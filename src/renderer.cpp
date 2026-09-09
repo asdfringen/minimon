@@ -2,10 +2,6 @@
 #include <cstdio>
 #include <sstream>
 
-#ifndef MINIMON_VERSION
-#define MINIMON_VERSION "?"
-#endif
-
 // UTF-8 block chars (console must be UTF-8)
 static const char* FULL = "\xE2\x96\x88";   // █
 static const char* LIGHT = "\xE2\x96\x91";  // ░
@@ -78,11 +74,8 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
 
   // Compact (stacked) layout: short lines, meters on their own row.
   // Selected manually with the m key; never auto-switched by width.
-  // Fixed 24 lines; a full clear happens on toggle, so updates stay stable.
+  // Fixed 23 lines; a full clear happens on toggle, so updates stay stable.
   if (compact) {
-    o << T("minimon v" MINIMON_VERSION " " + std::to_string((int)f.refreshSec) +
-            "s [q:quit +/- m:wide]") +
-           "\n";
 
   o << T("[CPU]") << "\n";
   o << T("  Total") << "\n";
@@ -161,10 +154,7 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
     return o.str();
   }
 
-  // Wide layout: fixed 16 lines (manual mode).
-  o << T("minimon v" MINIMON_VERSION "  Refresh:" + std::to_string((int)f.refreshSec) +
-          "s  [q:quit +/-:interval m:compact]") +
-         "\n";
+  // Wide layout: fixed 15 lines (manual mode).
 
   // CPU (total only) — fixed 2 lines
   o << T("[CPU Utilisation]") << "\n";

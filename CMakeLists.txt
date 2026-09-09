@@ -14,9 +14,6 @@ add_executable(minimon
 
 target_include_directories(minimon PRIVATE src)
 
-# Version string for the header line (lets users confirm which build runs).
-target_compile_definitions(minimon PRIVATE MINIMON_VERSION="${PROJECT_VERSION}")
-
 # Win32 APIs: PDH + DXGI + IP Helper
 target_link_libraries(minimon PRIVATE pdh dxgi iphlpapi ole32)
 

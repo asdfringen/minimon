@@ -8,25 +8,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_RC
-  "C:/programming/python/sandbox/minimon/src/app.rc" "C:/programming/python/sandbox/minimon/build/CMakeFiles/minimon.dir/src/app.rc.obj"
-  )
-
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_RC
-  "MINIMON_VERSION=\"0.8.1\""
+  "C:/programming/python/minimon/src/app.rc" "C:/programming/python/minimon/build/CMakeFiles/minimon.dir/src/app.rc.obj"
   )
 
 # The include file search paths:
 set(CMAKE_RC_TARGET_INCLUDE_PATH
-  "C:/programming/python/sandbox/minimon/src"
+  "C:/programming/python/minimon/src"
   )
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/programming/python/sandbox/minimon/src/cpu_sampler.cpp" "CMakeFiles/minimon.dir/src/cpu_sampler.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/cpu_sampler.cpp.obj.d"
-  "C:/programming/python/sandbox/minimon/src/gpu_sampler.cpp" "CMakeFiles/minimon.dir/src/gpu_sampler.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/gpu_sampler.cpp.obj.d"
-  "C:/programming/python/sandbox/minimon/src/main.cpp" "CMakeFiles/minimon.dir/src/main.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/main.cpp.obj.d"
-  "C:/programming/python/sandbox/minimon/src/renderer.cpp" "CMakeFiles/minimon.dir/src/renderer.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/renderer.cpp.obj.d"
+  "C:/programming/python/minimon/src/cpu_sampler.cpp" "CMakeFiles/minimon.dir/src/cpu_sampler.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/cpu_sampler.cpp.obj.d"
+  "C:/programming/python/minimon/src/gpu_sampler.cpp" "CMakeFiles/minimon.dir/src/gpu_sampler.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/gpu_sampler.cpp.obj.d"
+  "C:/programming/python/minimon/src/main.cpp" "CMakeFiles/minimon.dir/src/main.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/main.cpp.obj.d"
+  "C:/programming/python/minimon/src/renderer.cpp" "CMakeFiles/minimon.dir/src/renderer.cpp.obj" "gcc" "CMakeFiles/minimon.dir/src/renderer.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -1,6 +1,6 @@
 CMakeFiles/minimon.dir/src/renderer.cpp.obj: \
- C:\programming\python\sandbox\minimon\src\renderer.cpp \
- C:\programming\python\sandbox\minimon\src\renderer.h \
+ C:\programming\python\minimon\src\renderer.cpp \
+ C:\programming\python\minimon\src\renderer.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/string \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/requires_hosted.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -100,8 +100,8 @@ CMakeFiles/minimon.dir/src/renderer.cpp.obj: \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/uses_allocator.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/uses_allocator_args.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/tuple \
- C:\programming\python\sandbox\minimon\src\sys_sampler.h \
- C:\programming\python\sandbox\minimon\src\gpu_sampler.h \
+ C:\programming\python\minimon\src\sys_sampler.h \
+ C:\programming\python\minimon\src\gpu_sampler.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/optional \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/exception \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/exception_ptr.h \

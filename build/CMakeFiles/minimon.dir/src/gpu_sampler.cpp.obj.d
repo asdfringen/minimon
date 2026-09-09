@@ -1,6 +1,6 @@
 CMakeFiles/minimon.dir/src/gpu_sampler.cpp.obj: \
- C:\programming\python\sandbox\minimon\src\gpu_sampler.cpp \
- C:\programming\python\sandbox\minimon\src\gpu_sampler.h \
+ C:\programming\python\minimon\src\gpu_sampler.cpp \
+ C:\programming\python\minimon\src\gpu_sampler.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/optional \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/version.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \

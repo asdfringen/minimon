@@ -1,6 +1,6 @@
 CMakeFiles/minimon.dir/src/cpu_sampler.cpp.obj: \
- C:\programming\python\sandbox\minimon\src\cpu_sampler.cpp \
- C:\programming\python\sandbox\minimon\src\sys_sampler.h \
+ C:\programming\python\minimon\src\cpu_sampler.cpp \
+ C:\programming\python\minimon\src\sys_sampler.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/string \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/requires_hosted.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \

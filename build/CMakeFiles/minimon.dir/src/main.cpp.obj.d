@@ -1,5 +1,5 @@
 CMakeFiles/minimon.dir/src/main.cpp.obj: \
- C:\programming\python\sandbox\minimon\src\main.cpp \
+ C:\programming\python\minimon\src\main.cpp \
  C:/Windows/mingw64/x86_64-w64-mingw32/include/windows.h \
  C:/Windows/mingw64/x86_64-w64-mingw32/include/_mingw.h \
  C:/Windows/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
@@ -372,8 +372,8 @@ CMakeFiles/minimon.dir/src/main.cpp.obj: \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/this_thread_sleep.h \
- C:\programming\python\sandbox\minimon\src\sys_sampler.h \
- C:\programming\python\sandbox\minimon\src\gpu_sampler.h \
+ C:\programming\python\minimon\src\sys_sampler.h \
+ C:\programming\python\minimon\src\gpu_sampler.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/optional \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/exception \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/exception_ptr.h \
@@ -386,4 +386,4 @@ CMakeFiles/minimon.dir/src/main.cpp.obj: \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_vector.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_bvector.h \
  C:/Windows/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/vector.tcc \
- C:\programming\python\sandbox\minimon\src\renderer.h
+ C:\programming\python\minimon\src\renderer.h
