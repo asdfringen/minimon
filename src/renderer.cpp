@@ -6,6 +6,8 @@
 static const char* FULL = "\xE2\x96\x88";   // █
 static const char* LIGHT = "\xE2\x96\x91";  // ░
 static const char* WHITE = "\x1b[37m";
+static const char* SECTION = "\x1b[7m";
+static const char* RESET = "\x1b[0m";
 static const char* GREEN = "\x1b[32m";
 static const char* RED = "\x1b[31m";
 // Back to white (not default) so all text stays white.
@@ -77,14 +79,14 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
   // Fixed 23 lines; a full clear happens on toggle, so updates stay stable.
   if (compact) {
 
-  o << T("[CPU]") << "\n";
+  o << SECTION << T("CPU") << RESET << "\n";
   o << T("  Total") << "\n";
   if (f.cpu.valid)
     o << T("  ") << meter(f.cpu.totalPct, meterW(2, consoleWidth)) << WHITE << "\n";
   else
     o << T("  sampling...") << "\n";
 
-  o << T("[Memory]") << "\n";
+  o << "\x1b[7m" << T("Memory") << "\x1b[0m" << "\n";
     {
       char buf[128];
       snprintf(buf, sizeof(buf), "  Used %s", bytesToGBcompact(f.mem.usedBytes).c_str());
@@ -94,8 +96,7 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
       o << T(buf) << "\n";
     }
 
-    o << T("[GPU]") << "\n";
-    o << T(std::string("  ") + f.gpu.name) << "\n";
+    o << "\x1b[7m" << T("GPU") << "\x1b[0m" << "\n";
     o << T("  3D") << "\n";
     o << T("  ") << meter(f.gpu.engineValid ? f.gpu.util3D : 0.0, meterW(2, consoleWidth))
       << WHITE << "\n";
@@ -147,24 +148,25 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
 
 
 
-  if (withPosition)
+  if (withPosition) {
     o << "\x1b[J";
-    else
-      o << "\x1b[0m";
-    return o.str();
+  } else {
+    o << "\x1b[0m";
+  }
+  return o.str();
   }
 
   // Wide layout: fixed 15 lines (manual mode).
 
   // CPU (total only) — fixed 2 lines
-  o << T("[CPU Utilisation]") << "\n";
+  o << "\x1b[7m" << T("CPU Utilisation") << "\x1b[0m" << "\n";
   if (f.cpu.valid)
     o << T("  Total ") << meter(f.cpu.totalPct, meterW(8, consoleWidth)) << WHITE << "\n";
   else
     o << T("  Total (sampling...)") << "\n";
 
   // Memory — fixed 2 lines (Used only, no Free/Cache, no meter)
-  o << T("[Memory]") << "\n";
+  o << "\x1b[7m" << T("Memory") << "\x1b[0m" << "\n";
   {
     char buf[256];
     snprintf(buf, sizeof(buf), "  Used %s / %s (%.1f%%)",
@@ -173,9 +175,8 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
     o << T(buf) << "\n";
   }
 
-  // GPU — fixed 10 lines (name/4 meters/2x text+meter/temp, no summary % line)
-  o << T("[GPU]") << "\n";
-  o << T(std::string("  ") + f.gpu.name) << "\n";
+  // GPU — fixed 9 lines (4 meters/2x text+meter/temp, no summary % line)
+  o << "\x1b[7m" << T("GPU") << "\x1b[0m" << "\n";
   o << T("  3D       ") << meter(f.gpu.engineValid ? f.gpu.util3D : 0.0, meterW(11, consoleWidth))
     << WHITE << "\n";
   o << T("  Compute  ")
