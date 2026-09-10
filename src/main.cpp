@@ -52,6 +52,13 @@ int main(int argc, char** argv) {
 
   SetConsoleCtrlHandler(ctrlHandler, TRUE);
 
+  // Hide the console scrollbars so resizing never flashes them.
+  // Re-asserted on resize since the host may restore them then.
+  if (HWND hwnd = GetConsoleWindow()) {
+    ShowScrollBar(hwnd, SB_VERT, FALSE);
+    ShowScrollBar(hwnd, SB_HORZ, FALSE);
+  }
+
   CpuSampler cpu;
   GpuSampler gpu;
   std::string err;
@@ -113,7 +120,12 @@ int main(int argc, char** argv) {
     int w, h;
     consoleSize(&w, &h);
     if (forceClear || w != lastW || h != lastH) {
-      // Resize or mode toggle: full clear so shrunken layouts
+      // Resize: keep scrollbars hidden (host may restore them on resize).
+      if (HWND hwnd = GetConsoleWindow()) {
+        ShowScrollBar(hwnd, SB_VERT, FALSE);
+        ShowScrollBar(hwnd, SB_HORZ, FALSE);
+      }
+      // Full clear so shrunken layouts
       // don't keep leftover glyphs from the previous frame.
       printf("\x1b[H\x1b[2J");
       fflush(stdout);

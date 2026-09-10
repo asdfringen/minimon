@@ -12,6 +12,8 @@ static const char* GREEN = "\x1b[32m";
 static const char* RED = "\x1b[31m";
 // Back to white (not default) so all text stays white.
 static const char* TO_WHITE = "\x1b[0m\x1b[37m";
+static const char* CYAN = "\x1b[36m";
+static const char* YELLOW = "\x1b[33m";
 
 // Byte truncation that never splits a UTF-8 sequence (avoids mojibake).
 static std::string truncText(const std::string& s, size_t maxLen) {
@@ -79,38 +81,38 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
   // Fixed 23 lines; a full clear happens on toggle, so updates stay stable.
   if (compact) {
 
-  o << SECTION << T("CPU") << RESET << "\n";
-  o << T("  Total") << "\n";
+  o << SECTION << T("CPU") << RESET << "  " << "\n";
+  o << T("  Total") << "  " << "\n";
   if (f.cpu.valid)
-    o << T("  ") << meter(f.cpu.totalPct, meterW(2, consoleWidth)) << WHITE << "\n";
+    o << T("  ") << meter(f.cpu.totalPct, meterW(2, consoleWidth)) << WHITE << "  " << "\n";
   else
-    o << T("  sampling...") << "\n";
+    o << T("  sampling...") << "  " << "\n";
 
-  o << "\x1b[7m" << T("Memory") << "\x1b[0m" << "\n";
+  o << "\x1b[7m" << T("Memory") << "\x1b[0m" << "  " << "\n";
     {
       char buf[128];
       snprintf(buf, sizeof(buf), "  Used %s", bytesToGBcompact(f.mem.usedBytes).c_str());
-      o << T(buf) << "\n";
+      o << T(buf) << "  " << "\n";
       snprintf(buf, sizeof(buf), "  /%s(%.1f%%)", bytesToGBcompact(f.mem.totalBytes).c_str(),
                f.mem.usedPct);
-      o << T(buf) << "\n";
+      o << T(buf) << "  " << "\n";
     }
 
-    o << "\x1b[7m" << T("GPU") << "\x1b[0m" << "\n";
-    o << T("  3D") << "\n";
+    o << "\x1b[7m" << T("GPU") << "\x1b[0m" << "  " << "\n";
+    o << T("  3D") << "  " << "\n";
     o << T("  ") << meter(f.gpu.engineValid ? f.gpu.util3D : 0.0, meterW(2, consoleWidth))
-      << WHITE << "\n";
-    o << T("  Compute") << "\n";
+      << WHITE << "  " << "\n";
+    o << T("  Compute") << "  " << "\n";
     o << T("  ")
       << meter(f.gpu.engineValid ? f.gpu.utilCompute : 0.0, meterW(2, consoleWidth))
-      << WHITE << "\n";
-    o << T("  Copy") << "\n";
+      << WHITE << "  " << "\n";
+    o << T("  Copy") << "  " << "\n";
     o << T("  ") << meter(f.gpu.engineValid ? f.gpu.utilCopy : 0.0, meterW(2, consoleWidth))
-      << WHITE << "\n";
-    o << T("  Copy1") << "\n";
+      << WHITE << "  " << "\n";
+    o << T("  Copy1") << "  " << "\n";
     o << T("  ")
       << meter(f.gpu.engineValid ? f.gpu.utilCopy1 : 0.0, meterW(2, consoleWidth))
-      << WHITE << "\n";
+      << WHITE << "  " << "\n";
     {
       double dPct = f.gpu.dedicatedLimit
                         ? 100.0 * (double)f.gpu.dedicatedUsed / (double)f.gpu.dedicatedLimit
@@ -119,31 +121,31 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
                         ? 100.0 * (double)f.gpu.sharedUsed / (double)f.gpu.sharedLimit
                         : 0.0;
       char buf[128];
-      o << T("  Dedicated") << "\n";
+      o << T("  ") << CYAN << "Dedicated" << RESET << "  " << "\n";
       if (f.gpu.memValid)
         snprintf(buf, sizeof(buf), "  %s/%s", bytesToGBcompact(f.gpu.dedicatedUsed).c_str(),
                  bytesToGBcompact(f.gpu.dedicatedLimit).c_str());
       else
         snprintf(buf, sizeof(buf), "  N/A");
-      o << T(buf) << "\n";
+      o << T(buf) << "  " << "\n";
       o << T("  ") << meter(f.gpu.memValid ? dPct : 0.0, meterW(2, consoleWidth)) << WHITE
-        << "\n";
-      o << T("  Shared") << "\n";
+        << "  " << "\n";
+      o << T("  ") << YELLOW << "Shared" << RESET << "  " << "\n";
       if (f.gpu.memValid)
         snprintf(buf, sizeof(buf), "  %s/%s", bytesToGBcompact(f.gpu.sharedUsed).c_str(),
                  bytesToGBcompact(f.gpu.sharedLimit).c_str());
       else
         snprintf(buf, sizeof(buf), "  N/A");
-      o << T(buf) << "\n";
+      o << T(buf) << "  " << "\n";
       o << T("  ") << meter(f.gpu.memValid ? sPct : 0.0, meterW(2, consoleWidth)) << WHITE
-        << "\n";
+        << "  " << "\n";
     }
     if (f.gpu.tempC) {
       char buf[64];
       snprintf(buf, sizeof(buf), "  Temp %.1fC(%s)", *f.gpu.tempC, f.gpu.tempSource.c_str());
-      o << T(buf) << "\n";
+      o << T(buf) << "  " << "\n";
     } else {
-      o << T("  Temp N/A") << "\n";
+      o << T("  Temp N/A") << "  " << "\n";
     }
 
 
@@ -159,34 +161,34 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
   // Wide layout: fixed 15 lines (manual mode).
 
   // CPU (total only) — fixed 2 lines
-  o << "\x1b[7m" << T("CPU Utilisation") << "\x1b[0m" << "\n";
+  o << "\x1b[7m" << T("CPU") << "\x1b[0m" << "  " << "\n";
   if (f.cpu.valid)
-    o << T("  Total ") << meter(f.cpu.totalPct, meterW(8, consoleWidth)) << WHITE << "\n";
+    o << T("  Total ") << meter(f.cpu.totalPct, meterW(8, consoleWidth)) << WHITE << "  " << "\n";
   else
-    o << T("  Total (sampling...)") << "\n";
+    o << T("  Total (sampling...)") << "  " << "\n";
 
   // Memory — fixed 2 lines (Used only, no Free/Cache, no meter)
-  o << "\x1b[7m" << T("Memory") << "\x1b[0m" << "\n";
+  o << "\x1b[7m" << T("Memory") << "\x1b[0m" << "  " << "\n";
   {
     char buf[256];
     snprintf(buf, sizeof(buf), "  Used %s / %s (%.1f%%)",
              bytesToGB(f.mem.usedBytes).c_str(), bytesToGB(f.mem.totalBytes).c_str(),
              f.mem.usedPct);
-    o << T(buf) << "\n";
+    o << T(buf) << "  " << "\n";
   }
 
   // GPU — fixed 9 lines (4 meters/2x text+meter/temp, no summary % line)
-  o << "\x1b[7m" << T("GPU") << "\x1b[0m" << "\n";
+  o << "\x1b[7m" << T("GPU") << "\x1b[0m" << "  " << "\n";
   o << T("  3D       ") << meter(f.gpu.engineValid ? f.gpu.util3D : 0.0, meterW(11, consoleWidth))
-    << WHITE << "\n";
+    << WHITE << "  " << "\n";
   o << T("  Compute  ")
     << meter(f.gpu.engineValid ? f.gpu.utilCompute : 0.0, meterW(11, consoleWidth)) << WHITE
-    << "\n";
+    << "  " << "\n";
   o << T("  Copy     ") << meter(f.gpu.engineValid ? f.gpu.utilCopy : 0.0, meterW(11, consoleWidth))
-    << WHITE << "\n";
+    << WHITE << "  " << "\n";
   o << T("  Copy1    ")
     << meter(f.gpu.engineValid ? f.gpu.utilCopy1 : 0.0, meterW(11, consoleWidth)) << WHITE
-    << "\n";
+    << "  " << "\n";
   {
     double dPct = f.gpu.dedicatedLimit
                       ? 100.0 * (double)f.gpu.dedicatedUsed / (double)f.gpu.dedicatedLimit
@@ -196,31 +198,32 @@ std::string renderFrame(const FrameData& f, bool withPosition, int consoleWidth,
                       : 0.0;
     char buf[256];
     if (f.gpu.memValid) {
-      snprintf(buf, sizeof(buf), "  Dedicated %s / %s",
+      snprintf(buf, sizeof(buf), "  %sDedicated%s %s / %s", CYAN, RESET,
                bytesToGB(f.gpu.dedicatedUsed).c_str(),
-               bytesToGB(f.gpu.dedicatedLimit).c_str());
+                bytesToGB(f.gpu.dedicatedLimit).c_str());
     } else {
-      snprintf(buf, sizeof(buf), "  Dedicated N/A");
+      snprintf(buf, sizeof(buf), "  %sDedicated%s N/A", CYAN, RESET);
     }
-    o << T(buf) << "\n";
+    o << T(buf) << "  " << "\n";
     o << T("  ") << meter(f.gpu.memValid ? dPct : 0.0, meterW(2, consoleWidth)) << WHITE
-      << "\n";
+      << "  " << "\n";
     if (f.gpu.memValid) {
-      snprintf(buf, sizeof(buf), "  Shared    %s / %s", bytesToGB(f.gpu.sharedUsed).c_str(),
-               bytesToGB(f.gpu.sharedLimit).c_str());
+      snprintf(buf, sizeof(buf), "  %sShared%s    %s / %s", YELLOW, RESET,
+               bytesToGB(f.gpu.sharedUsed).c_str(),
+                bytesToGB(f.gpu.sharedLimit).c_str());
     } else {
-      snprintf(buf, sizeof(buf), "  Shared    N/A");
+      snprintf(buf, sizeof(buf), "  %sShared%s    N/A", YELLOW, RESET);
     }
-    o << T(buf) << "\n";
+    o << T(buf) << "  " << "\n";
     o << T("  ") << meter(f.gpu.memValid ? sPct : 0.0, meterW(2, consoleWidth)) << WHITE
-      << "\n";
+      << "  " << "\n";
   }
   if (f.gpu.tempC) {
     char buf[64];
     snprintf(buf, sizeof(buf), "  Temp %.1f C (%s)", *f.gpu.tempC, f.gpu.tempSource.c_str());
-    o << T(buf) << "\n";
+    o << T(buf) << "  " << "\n";
   } else {
-    o << T("  Temp N/A (ADL unavailable)") << "\n";
+    o << T("  Temp N/A (ADL unavailable)") << "  " << "\n";
   }
 
 
